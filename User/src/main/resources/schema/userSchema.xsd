@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://www.fm.com/lifevoy/user/generated"
+            targetNamespace="http://www.fm.com/lifevoy/user/generated"
+            elementFormDefault="qualified"
+>
+
+    <xsd:complexType name="User">
+        <xsd:sequence>
+            <xsd:element name="userName" type="xsd:string" />
+            <xsd:element name="password" type="xsd:string" />
+            <xsd:element name="followings" type="xsd:string" maxOccurs="unbounded"/>
+            <xsd:element name="followers" type="xsd:string" maxOccurs="unbounded"/>
+            <xsd:element name="posts" type="xsd:long" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="GetUserByUsernameRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="userName" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetUserByUsernameResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="user" type="tns:User"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="GetFollowersRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="username" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetFollowersResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="followers" type="tns:User" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="GetFollowingsRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="username" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetFollowingsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="followings" type="tns:User" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="FollowUserRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="requesterUsername" type="xsd:string"/>
+                <xsd:element name="targetUsername" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="FollowUserResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="targetUser" type="tns:User"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+
+    <xsd:element name="UnfollowUserRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="requesterUsername" type="xsd:string"/>
+                <xsd:element name="targetUsername" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="UnfollowUserResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="targetUser" type="tns:User"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="SignUpRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="username" type="xsd:string"/>
+                <xsd:element name="password" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="SignUpResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="newUser" type="tns:User"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="SignInRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="username" type="xsd:string"/>
+                <xsd:element name="password" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="SignInResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="newUser" type="tns:User"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
