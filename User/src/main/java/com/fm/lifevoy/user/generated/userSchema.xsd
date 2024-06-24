@@ -33,7 +33,7 @@
     <xsd:element name="GetFollowersRequest">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="followerUsernames" type="xsd:string" maxOccurs="unbounded"/>
+                <xsd:element name="username" type="xsd:string"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
@@ -48,7 +48,7 @@
     <xsd:element name="GetFollowingsRequest">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="followingUsernames" type="xsd:string" maxOccurs="unbounded"/>
+                <xsd:element name="username" type="xsd:string"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>

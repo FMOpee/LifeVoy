@@ -40,11 +40,13 @@ public class UserEndpoint {
         String username = request.getUsername();
         User user = userRepository.getUser(username);
         List<String> usernames = user.getFollowers();
+        System.out.println(usernames);
         GetFollowersResponse response = new GetFollowersResponse();
-        List<User> followers = userRepository.getUsers(usernames);
-        for (User follower : followers) {
-            response.getFollowers().add(follower);
+//        List<User> followers = userRepository.getUsers(usernames);
+        for (String follower : usernames) {
+            response.getFollowers().add(userRepository.getUser(follower));
         }
+        System.out.println(response.getFollowers());
         return response;
     }
 
@@ -55,9 +57,9 @@ public class UserEndpoint {
         User user = userRepository.getUser(username);
         List<String> usernames = user.getFollowers();
         GetFollowingsResponse response = new GetFollowingsResponse();
-        List<User> followers = userRepository.getUsers(usernames);
-        for (User follower : followers) {
-            response.getFollowings().add(follower);
+//        List<User> followers = userRepository.getUsers(usernames);
+        for (String following : usernames) {
+            response.getFollowings().add(userRepository.getUser(following));
         }
         return response;
     }
