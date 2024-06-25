@@ -68,8 +68,7 @@ public class UserRepository {
         List<User> listOfUsers = new ArrayList<>();
         for(String username:usernames){
             User u = users.get(username);
-            if(u==null)
-                listOfUsers.add(users.get(username));
+            if(u!=null) listOfUsers.add(users.get(username));
         }
         return listOfUsers;
     }

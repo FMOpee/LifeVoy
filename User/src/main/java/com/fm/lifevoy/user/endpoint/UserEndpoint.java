@@ -24,11 +24,7 @@ public class UserEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetUserByUsernameRequest")
     @ResponsePayload
     public GetUserByUsernameResponse getUserByUsername(@RequestPayload GetUserByUsernameRequest request){
-        System.out.println("request: " + request);
-        String username = request.getUserName();
-        System.out.println("username: " + username);
-        User u = userRepository.getUser(username);
-        System.out.println("user: " + u);
+        User u = userRepository.getUser(request.getUserName());
         GetUserByUsernameResponse response = new GetUserByUsernameResponse();
         response.setUser(u);
         return response;
@@ -37,28 +33,22 @@ public class UserEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetFollowersRequest")
     @ResponsePayload
     public GetFollowersResponse getFollowers(@RequestPayload GetFollowersRequest request){
-        String username = request.getUsername();
-        User user = userRepository.getUser(username);
+        User user = userRepository.getUser(request.getUsername());
         List<String> usernames = user.getFollowers();
-        System.out.println(usernames);
         GetFollowersResponse response = new GetFollowersResponse();
-        for (String follower : usernames) {
+        for (String follower : usernames)
             response.getFollowers().add(userRepository.getUser(follower));
-        }
-        System.out.println(response.getFollowers());
         return response;
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetFollowingsRequest")
     @ResponsePayload
     public GetFollowingsResponse getFollowings(@RequestPayload GetFollowingsRequest request){
-        String username = request.getUsername();
-        User user = userRepository.getUser(username);
+        User user = userRepository.getUser(request.getUsername());
         List<String> usernames = user.getFollowers();
         GetFollowingsResponse response = new GetFollowingsResponse();
-        for (String following : usernames) {
+        for (String following : usernames)
             response.getFollowings().add(userRepository.getUser(following));
-        }
         return response;
     }
 
@@ -67,8 +57,7 @@ public class UserEndpoint {
     public FollowUserResponse follow(@RequestPayload FollowUserRequest request){
         User target = userRepository.getUser(request.getTargetUsername());
         User requester = userRepository.getUser(request.getRequesterUsername());
-        if(target == null || requester == null)
-            return null;
+        if(target == null || requester == null) return null;
         else{
             target.getFollowers().add(requester.getUserName());
             requester.getFollowings().add(target.getUserName());
@@ -85,8 +74,7 @@ public class UserEndpoint {
     public UnfollowUserResponse unfollow(@RequestPayload UnfollowUserRequest request){
         User target = userRepository.getUser(request.getTargetUsername());
         User requester = userRepository.getUser(request.getRequesterUsername());
-        if(target == null || requester == null)
-            return null;
+        if(target == null || requester == null) return null;
         else{
             target.getFollowers().remove(requester.getUserName());
             requester.getFollowings().remove(target.getUserName());
@@ -104,8 +92,7 @@ public class UserEndpoint {
         String username = request.getUsername();
         String pass = request.getPassword();
         User requester = userRepository.getUser(username);
-        if(requester != null)
-            return null;
+        if(requester != null) return null;
         else{
             requester = new User();
             requester.setUserName(username);
@@ -123,8 +110,7 @@ public class UserEndpoint {
         String username = request.getUsername();
         String pass = request.getPassword();
         User requester = userRepository.getUser(username);
-        if(requester == null || !pass.equals(request.getPassword()))
-            return null;
+        if(requester == null || !pass.equals(request.getPassword())) return null;
         else{
             SignInResponse response = new SignInResponse();
             response.setNewUser(requester);
