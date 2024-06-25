@@ -29,19 +29,35 @@ In this folder 3 maven spring boot project is available related to each of the s
 3. **Feed**: [feed.wsdl](http://localhost:8101/ws/feed.wsdl)
 
 ## Relation between the services
-![image](LifeVoy.jpg)
+![image](imagesforreadme/LifeVoy.jpg)
 
 
 Here the Feed consumes the services User and Post who also independent operations of their own. While generating Feed, the Feed service sends a request to the user service and receives the list of accounts the user follows through GetFollowing. After that, It parses the response and makes a list of all the usernames of those accounts. After that, It gets all the posts through getFeed call using these usernames. 
+
+## Internal Structure of the Services
+Each service has the following essential components:
+![filestructures](filelist.png)
+#### Schema
+Schema contains the definitions of all the datatypes of the binding class.
+#### Application properties
+defines the port number and name of the application
+#### Application Class
+Contains the main function
+#### "Generated" package
+contains all the binding classes
+#### Endpoint Class
+defines each operation for a port type using the binding classes. It may call repository (dummy database) or client (consumer of other web services) according to its need.
+#### Config Class
+Makes a message dispatcher bean that is vital for all web services. makes a wsdl for the web service using the schema and endpoint class.
 
 ## Principles Followed
 | principle        | User | Post | Feed |
 | ---------------- | ---- | ---- | ---- |
 | Service Contract | ✔️   | ✔️   | ✔️   |
 | Loose Coupling   | ✔️   | ✔️   |      |
-| Abstraction      |      |      |      |
+| Abstraction      | ✔️   | ✔️   | ✔️   |
 | Reusability      | ✔️   | ✔️   |      |
 | Autonomy         | ✔️   | ✔️   |      |
 | Statelessness    | ✔️   | ✔️   | ✔️   |
 | Discoverability  |      |      |      |
-| Composability    |      |      |      |
+| Composability    | ✔️   | ✔️   | ✔️   |
