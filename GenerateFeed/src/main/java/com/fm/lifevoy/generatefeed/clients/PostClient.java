@@ -3,7 +3,9 @@ package com.fm.lifevoy.generatefeed.clients;
 import com.fm.lifevoy.generatefeed.generated.feed.Post;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,7 @@ import java.util.List;
 import static com.fm.lifevoy.generatefeed.clients.XMLUtils.*;
 
 public class PostClient {
-    public static List<Post> getFeed(List<String> usernames) throws IOException {
+    public static List<Post> getFeed(List<String> usernames) throws IOException, ParserConfigurationException, SAXException {
         String xmlInput=
                     "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:gen=\"http://www.fm.com/lifevoy/post/generated\">\n" +
                     "   <soapenv:Header/>\n" +
@@ -30,7 +32,6 @@ public class PostClient {
 
         for(int i=0;i<nodeLst.getLength();i++){
             NodeList children = nodeLst.item(i).getChildNodes();
-
             Post post = new Post();
             for(int j=0;j<children.getLength();j++){
                 String textContent = children.item(j).getTextContent();

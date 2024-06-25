@@ -4,7 +4,6 @@ import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
@@ -13,7 +12,7 @@ import java.net.URL;
 
 public class XMLUtils {
 
-    public static Document getParsedOutput(String xmlInput, String link) throws IOException {
+    public static Document getParsedOutput(String xmlInput, String link) throws IOException, ParserConfigurationException, SAXException {
         URL url = new URL(link);
         HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
 
@@ -25,24 +24,19 @@ public class XMLUtils {
         httpConn.setDoOutput(true);
         httpConn.setDoInput(true);
 
-        OutputStream out = httpConn.getOutputStream();
-        out.write(buffer);
-        out.close();
+        OutputStream request = httpConn.getOutputStream();
+        request.write(buffer);
+        request.close();
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(httpConn.getInputStream()));
+        BufferedReader response = new BufferedReader(new InputStreamReader(httpConn.getInputStream()));
 
-        String responseString;
+        String line;
         String outputString="";
-        while ((responseString = in.readLine()) != null)
-            outputString += responseString;
+        while ((line = response.readLine()) != null)
+            outputString += line;
 
-        try {
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            InputSource is = new InputSource(new StringReader(outputString));
-            return db.parse(is);
-        } catch (ParserConfigurationException | SAXException | IOException e) {
-            throw new RuntimeException(e);
-        }
+        InputSource is = new InputSource(new StringReader(outputString));
+        return DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(is);
+
     }
 }

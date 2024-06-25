@@ -2,7 +2,9 @@ package com.fm.lifevoy.generatefeed.clients;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +12,7 @@ import java.util.List;
 import static com.fm.lifevoy.generatefeed.clients.XMLUtils.*;
 
 public class UserClient {
-    public static List<String> getFollowings(String username) throws IOException {
+    public static List<String> getFollowings(String username) throws IOException, ParserConfigurationException, SAXException {
         String xmlInput =
         "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:gen=\"http://www.fm.com/lifevoy/user/generated\">"+
             "<soapenv:Header/>"+
