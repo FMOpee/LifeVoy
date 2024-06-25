@@ -29,14 +29,16 @@ In this folder 3 maven spring boot project is available related to each of the s
 3. **Feed**: [feed.wsdl](http://localhost:8101/ws/feed.wsdl)
 
 ## Relation between the services
-![image](imagesforreadme/LifeVoy.jpg)
-
+![List of services provided](imagesforreadme/LifeVoy.jpg)
 
 Here the Feed consumes the services User and Post who also independent operations of their own. While generating Feed, the Feed service sends a request to the user service and receives the list of accounts the user follows through GetFollowing. After that, It parses the response and makes a list of all the usernames of those accounts. After that, It gets all the posts through getFeed call using these usernames. 
 
+This relation can be seen in the following diagram:
+![Communication diagram](imagesforreadme/LifeVoy-Page-2.jpg)
+
 ## Internal Structure of the Services
 Each service has the following essential components:
-![filestructures](filelist.png)
+![filestructures](imagesforreadme/filelist.png)
 #### Schema
 Schema contains the definitions of all the datatypes of the binding class.
 #### Application properties

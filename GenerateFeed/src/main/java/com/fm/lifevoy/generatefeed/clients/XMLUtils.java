@@ -11,7 +11,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class XMLUtils {
-
     public static Document getParsedOutput(String xmlInput, String link) throws IOException, ParserConfigurationException, SAXException {
         URL url = new URL(link);
         HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
@@ -35,8 +34,7 @@ public class XMLUtils {
         while ((line = response.readLine()) != null)
             outputString += line;
 
-        InputSource is = new InputSource(new StringReader(outputString));
-        return DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(is);
-
+        InputSource inputSource = new InputSource(new StringReader(outputString));
+        return DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(inputSource);
     }
 }
