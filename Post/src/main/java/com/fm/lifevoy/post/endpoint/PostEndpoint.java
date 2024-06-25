@@ -8,7 +8,6 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Endpoint
@@ -27,7 +26,6 @@ public class PostEndpoint {
         GetFeedResponse response = new GetFeedResponse();
         List<String> followings = request.getFollowingUsernames();
         List<Post> allPosts = postRepository.getAllPosts();
-//        List<Post> feedPosts = new ArrayList<>();
         for (Post p:allPosts) {
             if(followings.contains(p.getPosterUsername())){
                 response.getPosts().add(p);

@@ -55,6 +55,7 @@ public class PostRepository {
         p6.setText("post text 6");
         p6.getLikers().addAll(List.of(new String[]{usernames[0],usernames[1],usernames[2]}));
         posts.put(p6.getPostID(), p6);
+
         Post p7 = new Post();
         p7.setPostID(nextPostId++);
         p7.setText("post text 7");
@@ -73,6 +74,7 @@ public class PostRepository {
         p9.setPosterUsername(usernames[2]);
         p9.getLikers().addAll(List.of(new String[]{usernames[0],usernames[1],usernames[2]}));
         posts.put(p9.getPostID(), p9);
+
         Post p10 = new Post();
         p10.setPostID(nextPostId++);
         p10.setText("post text 10");
@@ -91,6 +93,7 @@ public class PostRepository {
         p12.setPosterUsername(usernames[3]);
         p12.getLikers().addAll(List.of(new String[]{usernames[0],usernames[1],usernames[2]}));
         posts.put(p12.getPostID(), p12);
+
         Post p13 = new Post();
         p13.setPostID(nextPostId++);
         p13.setText("post text 13");
@@ -133,11 +136,7 @@ public class PostRepository {
         return post;
     }
     public List<Post> getAllPosts(){
-        List<Post> ret = new ArrayList<>();
-        for(Post post : posts.values()){
-            ret.add(post);
-        }
-        return ret;
+        return new ArrayList<>(posts.values());
     }
 }
 

@@ -42,7 +42,6 @@ public class UserEndpoint {
         List<String> usernames = user.getFollowers();
         System.out.println(usernames);
         GetFollowersResponse response = new GetFollowersResponse();
-//        List<User> followers = userRepository.getUsers(usernames);
         for (String follower : usernames) {
             response.getFollowers().add(userRepository.getUser(follower));
         }
@@ -57,7 +56,6 @@ public class UserEndpoint {
         User user = userRepository.getUser(username);
         List<String> usernames = user.getFollowers();
         GetFollowingsResponse response = new GetFollowingsResponse();
-//        List<User> followers = userRepository.getUsers(usernames);
         for (String following : usernames) {
             response.getFollowings().add(userRepository.getUser(following));
         }
@@ -125,7 +123,7 @@ public class UserEndpoint {
         String username = request.getUsername();
         String pass = request.getPassword();
         User requester = userRepository.getUser(username);
-        if(requester == null)
+        if(requester == null || !pass.equals(request.getPassword()))
             return null;
         else{
             SignInResponse response = new SignInResponse();

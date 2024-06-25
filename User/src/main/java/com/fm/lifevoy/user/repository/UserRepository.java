@@ -20,85 +20,41 @@ public class UserRepository {
         User u1 = new User();
         u1.setUserName(usernames[0]);
         u1.setPassword(usernames[0]);
-        u1.getFollowers().add(usernames[1]);
-        u1.getFollowers().add(usernames[2]);
-        u1.getFollowers().add(usernames[3]);
-
-        u1.getFollowings().add(usernames[1]);
-        u1.getFollowings().add(usernames[2]);
-        u1.getFollowings().add(usernames[3]);
-        u1.getFollowings().add(usernames[4]);
-
-        u1.getPosts().add(1L);
-        u1.getPosts().add(2L);
-        u1.getPosts().add(3L);
-
+        u1.getFollowers().addAll(List.of(new String[]{usernames[1],usernames[2],usernames[3]}));
+        u1.getFollowings().addAll(List.of(new String[]{usernames[1],usernames[2],usernames[3],usernames[4]}));
+        u1.getPosts().addAll(List.of(new Long[]{1L, 2L, 3L}));
         users.put(usernames[0],u1 );
 
         User u2 = new User();
         u2.setUserName(usernames[1]);
         u2.setPassword(usernames[1]);
-
         u2.getFollowers().add(usernames[0]);
-
-        u2.getFollowings().add(usernames[0]);
-        u2.getFollowings().add(usernames[2]);
-
-        u2.getPosts().add(4L);
-        u2.getPosts().add(5L);
-        u2.getPosts().add(6L);
-
+        u2.getFollowings().addAll(List.of(new String[]{usernames[0],usernames[2]}));
+        u2.getPosts().addAll(List.of(new Long[]{4L, 5L, 6L}));
         users.put(usernames[1],u2 );
 
         User u3 = new User();
         u3.setUserName(usernames[2]);
         u3.setPassword(usernames[2]);
-
-        u3.getFollowers().add(usernames[0]);
-        u3.getFollowers().add(usernames[1]);
-        u3.getFollowers().add(usernames[2]);
-        u3.getFollowers().add(usernames[3]);
-        u3.getFollowers().add(usernames[4]);
-
+        u3.getFollowers().addAll(List.of(new String[]{usernames[0],usernames[1],usernames[3],usernames[4]}));
         u3.getFollowings().add(usernames[0]);
-
-        u3.getPosts().add(7L);
-        u3.getPosts().add(8L);
-        u3.getPosts().add(9L);
-
+        u3.getPosts().addAll(List.of(new Long[]{7L, 8L, 9L}));
         users.put(usernames[2],u3 );
 
         User u4 = new User();
         u4.setUserName(usernames[3]);
         u4.setPassword(usernames[3]);
-
-        u4.getFollowers().add(usernames[0]);
-        u4.getFollowers().add(usernames[4]);
-
-        u4.getFollowings().add(usernames[0]);
-        u4.getFollowings().add(usernames[2]);
-        u4.getFollowings().add(usernames[4]);
-
-        u4.getPosts().add(10L);
-        u4.getPosts().add(11L);
-        u4.getPosts().add(12L);
-
+        u4.getFollowers().addAll(List.of(new String[]{usernames[0],usernames[4]}));
+        u4.getFollowings().addAll(List.of(new String[]{usernames[0],usernames[2],usernames[4]}));
+        u4.getPosts().addAll(List.of(new Long[]{10L,11L,12L}));
         users.put(usernames[3],u4 );
 
         User u5 = new User();
         u5.setUserName(usernames[4]);
         u5.setPassword(usernames[4]);
-
-        u5.getFollowers().add(usernames[0]);
-        u5.getFollowers().add(usernames[3]);
-
-        u5.getFollowings().add(usernames[2]);
-        u5.getFollowings().add(usernames[3]);
-
-        u5.getPosts().add(13L);
-        u5.getPosts().add(14L);
-        u5.getPosts().add(15L);
-
+        u5.getFollowers().addAll(List.of(new String[]{usernames[0],usernames[3]}));
+        u5.getFollowings().addAll(List.of(new String[]{usernames[2],usernames[3]}));
+        u5.getPosts().addAll(List.of(new Long[]{13L,14L,15L}));
         users.put(usernames[4],u5 );
     }
 
