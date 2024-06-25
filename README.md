@@ -37,7 +37,8 @@ This relation can be seen in the following diagram:
 ![Communication diagram](imagesforreadme/LifeVoy-Page-2.jpg)
 
 ## Internal Structure of the Services
-Each service has the following essential components:
+Each service has the following essential components: 
+
 ![filestructures](imagesforreadme/filelist.PNG)
 #### Schema
 Schema contains the definitions of all the datatypes of the binding class.
