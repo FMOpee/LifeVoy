@@ -38,7 +38,7 @@ This relation can be seen in the following diagram:
 
 ## Internal Structure of the Services
 Each service has the following essential components:
-![filestructures](imagesforreadme/filelist.png)
+![filestructures](imagesforreadme/filelist.PNG)
 #### Schema
 Schema contains the definitions of all the datatypes of the binding class.
 #### Application properties
