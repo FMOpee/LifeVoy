@@ -9,7 +9,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import java.util.List;
 
-import static com.fm.lifevoy.v2.post.StrikeClient.canPost;
+import static com.fm.lifevoy.v2.post.PostEligibilityClient.canPost;
 
 @Endpoint
 public class PostEndpoint {

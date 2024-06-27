@@ -141,4 +141,20 @@ public class ObjectFactory {
         return new PublicProfile();
     }
 
+    /**
+     * Create an instance of {@link GetAllUserNamesRequest }
+     * 
+     */
+    public GetAllUserNamesRequest createGetAllUserNamesRequest() {
+        return new GetAllUserNamesRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetAllUserNamesResponse }
+     * 
+     */
+    public GetAllUserNamesResponse createGetAllUserNamesResponse() {
+        return new GetAllUserNamesResponse();
+    }
+
 }

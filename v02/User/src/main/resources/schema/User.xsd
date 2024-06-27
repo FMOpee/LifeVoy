@@ -114,5 +114,20 @@
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
+    <!--///////////////////////////////////////////////////////////////-->
+    <xsd:element name="GetAllUserNamesRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element type="xsd:string" name="token"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetAllUserNamesResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element type="xsd:string" name="usernames" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
 
 </xsd:schema>

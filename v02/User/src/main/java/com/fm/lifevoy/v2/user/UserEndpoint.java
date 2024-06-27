@@ -135,4 +135,15 @@ public class UserEndpoint {
                         .getRequesterUsername());
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllUserNamesRequest")
+    @ResponsePayload
+    public GetAllUserNamesResponse getAllUserNames(@RequestPayload GetAllUserNamesRequest request) {
+        GetAllUserNamesResponse response = new GetAllUserNamesResponse();
+        if (request.getToken().equals("123456789")){
+            response.getUsernames().addAll(userRepository.listUsernames());
+            return response;
+        }
+        return response;
+    }
+
 }

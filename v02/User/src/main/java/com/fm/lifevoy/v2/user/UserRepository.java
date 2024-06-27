@@ -35,11 +35,11 @@ public class UserRepository {
         return users.get(username);
     }
 
-    public void putUser(User user){
-        users.put(user.getProfile().getUsername(), user);
-    }
-
-    public void removeUser(User user){
-        users.remove(user.getProfile().getUsername());
+    public List<String> listUsernames() {
+        List<String> usernames=new ArrayList<>();
+        for (User user : users.values()) {
+            usernames.add(user.getProfile().getUsername());
+        }
+        return usernames;
     }
 }
