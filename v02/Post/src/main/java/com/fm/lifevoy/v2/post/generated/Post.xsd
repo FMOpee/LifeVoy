@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://fm.com/lifevoy/v2/post"
+            xmlns:tns="http://fm.com/lifevoy/v2/post"
+            elementFormDefault="qualified">
+
+    <xsd:complexType name="Post">
+        <xsd:sequence>
+            <xsd:element type="xsd:long" name="postID"/>
+            <xsd:element type="xsd:string" name="posterUsername"/>
+            <xsd:element type="xsd:string" name="text"/>
+            <xsd:element type="xsd:string" name="likerUsernames" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!--//////////////////////////////////////////////////////////////////////-->
+    <xsd:element name="CreatePostRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element type="xsd:string" name="posterUsername"/>
+                <xsd:element type="xsd:string" name="text"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="CreatePostResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element type="xsd:boolean" name="success"/>
+                <xsd:element type="tns:Post" name="post"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <!--//////////////////////////////////////////////////////////////////////-->
+    <xsd:element name="GetPostsUsingPosterRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element type="xsd:string" name="posterUsernames" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetPostsUsingPosterResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element type="tns:Post" name="post" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <!--//////////////////////////////////////////////////////////////////////-->
+    <xsd:element name="GetPostUsingIDRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element type="xsd:long" name="postID"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetPostUsingIDResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element type="tns:Post" name="post"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <!--//////////////////////////////////////////////////////////////////////-->
+    <xsd:element name="LikePostRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element type="xsd:long" name="postID"/>
+                <xsd:element type="xsd:string" name="requesterUsername"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <!--//////////////////////////////////////////////////////////////////////-->
+    <xsd:element name="DislikePostRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element type="xsd:long" name="postID"/>
+                <xsd:element type="xsd:string" name="requesterUsername"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    
+</xsd:schema>
