@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://fm.com/lifevoy/v2/user" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://fm.com/lifevoy/v2/user" targetNamespace="http://fm.com/lifevoy/v2/user">
+  <wsdl:types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://fm.com/lifevoy/v2/user">
+
+    <xsd:complexType name="PublicProfile">
+        <xsd:sequence>
+            <xsd:element name="username" type="xsd:string"/>
+            <xsd:element maxOccurs="unbounded" name="followers" type="xsd:string"/>
+            <xsd:element maxOccurs="unbounded" name="followings" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="User">
+        <xsd:sequence>
+            <xsd:element name="profile" type="tns:PublicProfile"/>
+            <xsd:element name="password" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!--///////////////////////////////////////////////////////////////-->
+    <xsd:element name="GetFollowersRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="username" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetFollowersResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element maxOccurs="unbounded" name="followerUsernames" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <!--///////////////////////////////////////////////////////////////-->
+    <xsd:element name="GetFollowingsRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="username" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetFollowingsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element maxOccurs="unbounded" name="followingUsernames" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <!--///////////////////////////////////////////////////////////////-->
+    <xsd:element name="FollowUserRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="requesterUsername" type="xsd:string"/>
+                <xsd:element name="targetUsername" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <!--///////////////////////////////////////////////////////////////-->
+    <xsd:element name="UnfollowUserRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="requesterUsername" type="xsd:string"/>
+                <xsd:element name="targetUsername" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <!--///////////////////////////////////////////////////////////////-->
+    <xsd:element name="LoginRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="username" type="xsd:string"/>
+                <xsd:element name="password" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="LoginResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="success" type="xsd:boolean"/>
+                <xsd:element name="user" type="tns:User"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <!--///////////////////////////////////////////////////////////////-->
+    <xsd:element name="SignupRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="username" type="xsd:string"/>
+                <xsd:element name="password" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="SignupResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="success" type="xsd:boolean"/>
+                <xsd:element name="user" type="tns:User"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <!--///////////////////////////////////////////////////////////////-->
+    <xsd:element name="GetUserRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element maxOccurs="unbounded" name="usernames" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetUserResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element maxOccurs="unbounded" name="profiles" type="tns:PublicProfile"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="LoginResponse">
+    <wsdl:part element="tns:LoginResponse" name="LoginResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetUserRequest">
+    <wsdl:part element="tns:GetUserRequest" name="GetUserRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="FollowUserRequest">
+    <wsdl:part element="tns:FollowUserRequest" name="FollowUserRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetFollowingsRequest">
+    <wsdl:part element="tns:GetFollowingsRequest" name="GetFollowingsRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetFollowingsResponse">
+    <wsdl:part element="tns:GetFollowingsResponse" name="GetFollowingsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnfollowUserRequest">
+    <wsdl:part element="tns:UnfollowUserRequest" name="UnfollowUserRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetUserResponse">
+    <wsdl:part element="tns:GetUserResponse" name="GetUserResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetFollowersResponse">
+    <wsdl:part element="tns:GetFollowersResponse" name="GetFollowersResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="LoginRequest">
+    <wsdl:part element="tns:LoginRequest" name="LoginRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SignupRequest">
+    <wsdl:part element="tns:SignupRequest" name="SignupRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SignupResponse">
+    <wsdl:part element="tns:SignupResponse" name="SignupResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetFollowersRequest">
+    <wsdl:part element="tns:GetFollowersRequest" name="GetFollowersRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="User">
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginRequest" name="LoginRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:LoginResponse" name="LoginResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <wsdl:input message="tns:GetUserRequest" name="GetUserRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetUserResponse" name="GetUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FollowUser">
+      <wsdl:input message="tns:FollowUserRequest" name="FollowUserRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetFollowings">
+      <wsdl:input message="tns:GetFollowingsRequest" name="GetFollowingsRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetFollowingsResponse" name="GetFollowingsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnfollowUser">
+      <wsdl:input message="tns:UnfollowUserRequest" name="UnfollowUserRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetFollowers">
+      <wsdl:input message="tns:GetFollowersRequest" name="GetFollowersRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetFollowersResponse" name="GetFollowersResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Signup">
+      <wsdl:input message="tns:SignupRequest" name="SignupRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:SignupResponse" name="SignupResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UserSoap11" type="tns:User">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="LoginRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="LoginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetUserRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FollowUser">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="FollowUserRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetFollowings">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetFollowingsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetFollowingsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnfollowUser">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="UnfollowUserRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetFollowers">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetFollowersRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetFollowersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Signup">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="SignupRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="SignupResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UserService">
+    <wsdl:port binding="tns:UserSoap11" name="UserSoap11">
+      <soap:address location="http://localhost:8081/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
