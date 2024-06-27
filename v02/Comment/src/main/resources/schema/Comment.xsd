@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://fm.com/lifevoy/v2/comment"
+            xmlns:tns="http://fm.com/lifevoy/v2/comment"
+            elementFormDefault="qualified"
+>
+
+    <xsd:complexType name="Reply">
+        <xsd:sequence>
+            <xsd:element type="xsd:string" name="username"/>
+            <xsd:element type="xsd:string" name="text"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Comment">
+        <xsd:sequence>
+            <xsd:element type="xsd:long" name="commentID"/>
+            <xsd:element type="xsd:long" name="postID"/>
+            <xsd:element type="xsd:string" name="commenter"/>
+            <xsd:element type="xsd:string" name="text"/>
+            <xsd:element type="tns:Reply" name="replies" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!--//////////////////////////////////////////////////////////////////////-->
+    <xsd:element name="GetCommentsRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element type="xsd:long" name="postID"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetCommentsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element type="tns:Comment" name="comments" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <!--//////////////////////////////////////////////////////////////////////-->
+    <xsd:element name="CommentRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element type="xsd:long" name="postID"/>
+                <xsd:element type="xsd:string" name="username"/>
+                <xsd:element type="xsd:string" name="text"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="CommentResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element type="tns:Comment" name="comment"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <!--//////////////////////////////////////////////////////////////////////-->
+    <xsd:element name="ReplyRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element type="xsd:long" name="commentID"/>
+                <xsd:element type="xsd:string" name="username"/>
+                <xsd:element type="xsd:string" name="text"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="ReplyResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element type="tns:Comment" name="comment"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
