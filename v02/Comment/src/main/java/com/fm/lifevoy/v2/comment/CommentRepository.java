@@ -17,7 +17,7 @@ public class CommentRepository {
 
     @PostConstruct
     public void init() {
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < 100; i++) {
             Comment c = addComment(
                     "comment "+i,
                     "username"+(i%6+1),

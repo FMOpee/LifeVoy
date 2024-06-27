@@ -1,10 +1,10 @@
-package com.fm.lifevoy.generatefeed.endpoint;
+package com.fm.lifevoy.v2.generatefeed;
 
-import com.fm.lifevoy.generatefeed.clients.PostClient;
-import com.fm.lifevoy.generatefeed.clients.UserClient;
-import com.fm.lifevoy.generatefeed.generated.feed.GetFeedRequest;
-import com.fm.lifevoy.generatefeed.generated.feed.GetFeedResponse;
-import com.fm.lifevoy.generatefeed.generated.feed.Post;
+import com.fm.lifevoy.v2.generatefeed.clients.PostClient;
+import com.fm.lifevoy.v2.generatefeed.clients.UserClient;
+import com.fm.lifevoy.v2.generatefeed.generated.GetFeedRequest;
+import com.fm.lifevoy.v2.generatefeed.generated.GetFeedResponse;
+import com.fm.lifevoy.v2.generatefeed.generated.Post;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -17,7 +17,7 @@ import java.util.List;
 
 @Endpoint
 public class FeedEndpoint {
-    private static final String NAMESPACE_URI = "http://www.fm.com/lifevoy/feed/generated";
+    private static final String NAMESPACE_URI = "http://www.fm.com/lifevoy/v2/feed";
 
     @PayloadRoot(namespace = NAMESPACE_URI,localPart = "GetFeedRequest")
     @ResponsePayload

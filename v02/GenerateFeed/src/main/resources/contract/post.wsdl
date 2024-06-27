@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://fm.com/lifevoy/v2/post" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://fm.com/lifevoy/v2/post" targetNamespace="http://fm.com/lifevoy/v2/post">
+  <wsdl:types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://fm.com/lifevoy/v2/post">
+
+    <xsd:complexType name="Post">
+        <xsd:sequence>
+            <xsd:element name="postID" type="xsd:long"/>
+            <xsd:element name="posterUsername" type="xsd:string"/>
+            <xsd:element name="text" type="xsd:string"/>
+            <xsd:element maxOccurs="unbounded" name="likerUsernames" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!--//////////////////////////////////////////////////////////////////////-->
+    <xsd:element name="CreatePostRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="posterUsername" type="xsd:string"/>
+                <xsd:element name="text" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="CreatePostResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="success" type="xsd:boolean"/>
+                <xsd:element name="post" type="tns:Post"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <!--//////////////////////////////////////////////////////////////////////-->
+    <xsd:element name="GetPostsUsingPosterRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element maxOccurs="unbounded" name="posterUsernames" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetPostsUsingPosterResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element maxOccurs="unbounded" name="post" type="tns:Post"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <!--//////////////////////////////////////////////////////////////////////-->
+    <xsd:element name="GetPostUsingIDRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="postID" type="xsd:long"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetPostUsingIDResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="post" type="tns:Post"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <!--//////////////////////////////////////////////////////////////////////-->
+    <xsd:element name="LikePostRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="postID" type="xsd:long"/>
+                <xsd:element name="requesterUsername" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <!--//////////////////////////////////////////////////////////////////////-->
+    <xsd:element name="DislikePostRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="postID" type="xsd:long"/>
+                <xsd:element name="requesterUsername" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="CreatePostRequest">
+    <wsdl:part element="tns:CreatePostRequest" name="CreatePostRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetPostUsingIDResponse">
+    <wsdl:part element="tns:GetPostUsingIDResponse" name="GetPostUsingIDResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetPostUsingIDRequest">
+    <wsdl:part element="tns:GetPostUsingIDRequest" name="GetPostUsingIDRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetPostsUsingPosterRequest">
+    <wsdl:part element="tns:GetPostsUsingPosterRequest" name="GetPostsUsingPosterRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CreatePostResponse">
+    <wsdl:part element="tns:CreatePostResponse" name="CreatePostResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetPostsUsingPosterResponse">
+    <wsdl:part element="tns:GetPostsUsingPosterResponse" name="GetPostsUsingPosterResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DislikePostRequest">
+    <wsdl:part element="tns:DislikePostRequest" name="DislikePostRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="LikePostRequest">
+    <wsdl:part element="tns:LikePostRequest" name="LikePostRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Post">
+    <wsdl:operation name="CreatePost">
+      <wsdl:input message="tns:CreatePostRequest" name="CreatePostRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:CreatePostResponse" name="CreatePostResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPostUsingID">
+      <wsdl:input message="tns:GetPostUsingIDRequest" name="GetPostUsingIDRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetPostUsingIDResponse" name="GetPostUsingIDResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPostsUsingPoster">
+      <wsdl:input message="tns:GetPostsUsingPosterRequest" name="GetPostsUsingPosterRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetPostsUsingPosterResponse" name="GetPostsUsingPosterResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DislikePost">
+      <wsdl:input message="tns:DislikePostRequest" name="DislikePostRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="LikePost">
+      <wsdl:input message="tns:LikePostRequest" name="LikePostRequest">
+    </wsdl:input>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PostSoap11" type="tns:Post">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CreatePost">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CreatePostRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreatePostResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPostUsingID">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetPostUsingIDRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetPostUsingIDResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPostsUsingPoster">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetPostsUsingPosterRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetPostsUsingPosterResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DislikePost">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="DislikePostRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="LikePost">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="LikePostRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PostService">
+    <wsdl:port binding="tns:PostSoap11" name="PostSoap11">
+      <soap:address location="http://localhost:8082/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

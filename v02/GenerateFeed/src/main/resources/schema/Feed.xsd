@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://www.fm.com/lifevoy/v2/feed"
+            targetNamespace="http://www.fm.com/lifevoy/v2/feed"
+            elementFormDefault="qualified">
+
+    <xsd:complexType name="Post">
+        <xsd:sequence>
+            <xsd:element name="postID" type="xsd:long"/>
+            <xsd:element name="text" type="xsd:string"/>
+            <xsd:element name="posterUsername" type="xsd:string"/>
+            <xsd:element maxOccurs="unbounded" name="likers" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="GetFeedRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="username" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="GetFeedResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="posts" type="tns:Post" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
