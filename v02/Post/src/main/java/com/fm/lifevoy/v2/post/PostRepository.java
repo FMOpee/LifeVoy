@@ -20,7 +20,7 @@ public class PostRepository {
             p.setText("post text "+(i+1));
             p.setPosterUsername("username"+(i%10+1));
             p.getLikerUsernames().add("username"+(i%10+1));
-            p.getLikerUsernames().add("username"+((i+1)%10));
+            p.getLikerUsernames().add("username"+((i+1)%10+1));
             createNewPost(p);
         }
     }
