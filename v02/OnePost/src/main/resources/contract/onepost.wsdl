@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.fm.com/lifevoy/v2/onepost" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.fm.com/lifevoy/v2/onepost" targetNamespace="http://www.fm.com/lifevoy/v2/onepost">
+  <wsdl:types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.fm.com/lifevoy/v2/onepost">
+
+
+    <xsd:complexType name="Reply">
+        <xsd:sequence>
+            <xsd:element name="username" type="xsd:string"/>
+            <xsd:element name="text" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Comment">
+        <xsd:sequence>
+            <xsd:element name="username" type="xsd:string"/>
+            <xsd:element name="text" type="xsd:string"/>
+            <xsd:element maxOccurs="unbounded" name="replies" type="tns:Reply"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Post">
+        <xsd:sequence>
+            <xsd:element name="postID" type="xsd:long"/>
+            <xsd:element name="text" type="xsd:string"/>
+            <xsd:element name="posterUsername" type="xsd:string"/>
+            <xsd:element maxOccurs="unbounded" name="likers" type="xsd:string"/>
+            <xsd:element maxOccurs="unbounded" name="comments" type="tns:Comment"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="GetOnePostRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="postID" type="xsd:long"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="GetOnePostResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="post" type="tns:Post"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="GetOnePostRequest">
+    <wsdl:part element="tns:GetOnePostRequest" name="GetOnePostRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetOnePostResponse">
+    <wsdl:part element="tns:GetOnePostResponse" name="GetOnePostResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="OnePost">
+    <wsdl:operation name="GetOnePost">
+      <wsdl:input message="tns:GetOnePostRequest" name="GetOnePostRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetOnePostResponse" name="GetOnePostResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OnePostSoap11" type="tns:OnePost">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetOnePost">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetOnePostRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetOnePostResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OnePostService">
+    <wsdl:port binding="tns:OnePostSoap11" name="OnePostSoap11">
+      <soap:address location="http://localhost:8086/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

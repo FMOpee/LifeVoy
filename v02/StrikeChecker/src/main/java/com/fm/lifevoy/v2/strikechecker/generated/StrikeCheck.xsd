@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://fm.com/lifevoy/v2/strikecheck"
+            xmlns:tns="http://fm.com/lifevoy/v2/strikecheck"
+            elementFormDefault="qualified">
+    
+    <xsd:element name="PostEligibilityCheckRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="username" type="xsd:string"/>
+                <xsd:element type="xsd:string" name="text"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="PostEligibilityCheckResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="eligible" type="xsd:boolean"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    
+</xsd:schema>

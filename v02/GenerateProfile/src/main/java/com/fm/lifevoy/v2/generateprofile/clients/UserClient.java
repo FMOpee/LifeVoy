@@ -15,19 +15,18 @@ public class UserClient {
                 "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:user=\"http://fm.com/lifevoy/v2/user\">\n" +
                 "   <soapenv:Header/>\n" +
                 "   <soapenv:Body>\n" +
-                "      <user:GetFollowingsRequest>\n" +
-                "         <user:username>"+username+"</user:username>\n" +
-                "      </user:GetFollowingsRequest>\n" +
+                "      <user:GetUserRequest>\n" +
+                "         <!--1 or more repetitions:-->\n" +
+                "         <user:usernames>"+username+"</user:usernames>\n" +
+                "      </user:GetUserRequest>\n" +
                 "   </soapenv:Body>\n" +
                 "</soapenv:Envelope>";
 
         Document document = getParsedOutput(xmlInput,"http://localhost:8081/ws");
 
-        NodeList followings = document.getElementsByTagName("ns2:followingUsernames");
-        NodeList followers = document.getElementsByTagName("ns2:followerUsernames");
+        NodeList followings = document.getElementsByTagName("ns2:followings");
+        NodeList followers = document.getElementsByTagName("ns2:followers");
 
         return new PairOfLong(followers.getLength(), followings.getLength());
     }
-
-
 }
