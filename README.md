@@ -289,8 +289,8 @@ XML Input :
 ## Principles
 #### User
 The User Service is running in the 8081 port, whose wsdl file is available at: http://localhost:8081/ws/user.wsdl 
-SoapUI Configuration File: [User Configuration](/SoapUI%20Configurations/LifeVoy-v2-User-soapui-project.xml) 
 
+SoapUI Configuration File: [User Configuration](/SoapUI%20Configurations/LifeVoy-v2-User-soapui-project.xml) 
 
 This service 
 * has a standardized Service Contract in form of this wsdl file
@@ -303,6 +303,7 @@ Abstraction wasnt possible due to the project being too simplistic in nature. Di
 
 #### Post
 The Post Service is running in the 8082 port, whose wsdl file is available at: http://localhost:8082/ws/post.wsdl
+
 SoapUI Configuration File: [Post Configuration](/SoapUI%20Configurations//Lifevoy-v2-Post-soapui-project.xml) 
 
 This service 
@@ -315,6 +316,7 @@ The service was too central for it to have loose coupling. Abstraction wasnt pos
 
 #### Comment
 The Comment Service is running in the 8083 port, whose wsdl file is available at: http://localhost:8083/ws/comment.wsdl
+
 SoapUI Configuration File: [Comment Configuration](/SoapUI%20Configurations/Lifevoy-v2-Comment-soapui-project.xml) 
 
 This service 
@@ -328,6 +330,7 @@ Abstraction wasnt possible due to the project being too simplistic in nature. Di
 
 #### Messaging
 The Messaging Service is running in the 9000 port, whose wsdl file is available at: http://localhost:9000/ws/messaging.wsdl
+
 SoapUI Configuration File: [Messaging Configuration](/SoapUI%20Configurations/LifeVoy-V2-Messaging-soapui-project.xml) 
 
 This service 
@@ -341,6 +344,7 @@ Abstraction wasnt possible due to the project being too simplistic in nature. Di
 
 #### Generate Feed
 The GenerateFeed Service is running in the 8084 port, whose wsdl file is available at: http://localhost:8084/ws/feed.wsdl
+
 SoapUI Configuration File: [Generate Feed Configuration](/SoapUI%20Configurations/Lifevoy-v2-Feed-soapui-project.xml) 
 
 This service 
@@ -351,6 +355,7 @@ It isnt reusable due to being a task service and specific for a task. This is de
 
 #### Generate Profile
 The GenerateProfile Service is running in the 8085 port, whose wsdl file is available at: http://localhost:8085/ws/profile.wsdl
+
 SoapUI Configuration File: [Profile Configuration](/SoapUI%20Configurations/LifeVoy-v2-Profile-soapui-project.xml) 
 
 This service 
@@ -361,6 +366,7 @@ It isnt reusable due to being a task service and specific for a task. This is de
 
 #### OnePost
 The OnePost Service is running in the 8086 port, whose wsdl file is available at: http://localhost:8086/ws/onepost.wsdl
+
 SoapUI Configuration File: [One Post Configuration](/SoapUI%20Configurations/LifeVoy-v2-OnePost-soapui-project.xml) 
 
 This service 
@@ -371,6 +377,7 @@ It isnt reusable due to being a task service and specific for a task. This is de
 
 #### Strike Checker
 The StrikeCheck Service is running in the 8087 port, whose wsdl file is available at: http://localhost:8087/ws/strikecheck.wsdl
+
 SoapUI Configuration File: [Strike Checker Configuration](/SoapUI%20Configurations/LifeVoy-v2-StrikeCheck-soapui-project.xml) 
 
 This service 
