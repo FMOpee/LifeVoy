@@ -6,7 +6,10 @@ import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.util.List;
 
 import static com.fm.lifevoy.v2.post.PostEligibilityClient.canPost;
@@ -23,7 +26,7 @@ public class PostEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "CreatePostRequest")
     @ResponsePayload
-    public CreatePostResponse createPost(@RequestPayload CreatePostRequest request){
+    public CreatePostResponse createPost(@RequestPayload CreatePostRequest request) throws IOException, ParserConfigurationException, SAXException {
         Post post=new Post();
         CreatePostResponse response=new CreatePostResponse();
         if(canPost( request.getText(), request.getPosterUsername() )) {
