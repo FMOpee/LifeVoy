@@ -35,6 +35,7 @@ The mentioned features are implemented through the following relationship betwee
 
 ##### Login
 Service URL: http://localhost:8081/ws
+
 XML Input :
 ```XML
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://fm.com/lifevoy/v2/user">
@@ -50,6 +51,7 @@ XML Input :
 
 ##### Signup
 Service URL: http://localhost:8081/ws
+
 XML Input :
 ```XML
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://fm.com/lifevoy/v2/user">
@@ -65,6 +67,7 @@ XML Input :
 
 ##### Follow
 Service URL: http://localhost:8081/ws
+
 XML Input :
 ```XML
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://fm.com/lifevoy/v2/user">
@@ -79,6 +82,7 @@ XML Input :
 ```
 ##### Unfollow
 Service URL: http://localhost:8081/ws
+
 XML Input :
 ```XML
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://fm.com/lifevoy/v2/user">
@@ -93,6 +97,7 @@ XML Input :
 ```
 ##### Get Followers
 Service URL: http://localhost:8081/ws
+
 XML Input :
 ```XML
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://fm.com/lifevoy/v2/user">
@@ -106,6 +111,7 @@ XML Input :
 ```
 ##### Get Followings
 Service URL: http://localhost:8081/ws
+
 XML Input :
 ```XML
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://fm.com/lifevoy/v2/user">
@@ -119,6 +125,7 @@ XML Input :
 ```
 ##### Home Feed
 Service URL: http://localhost:8084/ws
+
 XML Input :
 ```XML
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:feed="http://www.fm.com/lifevoy/v2/feed">
@@ -132,6 +139,7 @@ XML Input :
 ```
 ##### Profile Feed
 Service URL: http://localhost:8085/ws
+
 XML Input :
 ```XML
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:prof="http://www.fm.com/lifevoy/v2/profile">
@@ -145,6 +153,7 @@ XML Input :
 ```
 ##### Create Post
 Service URL: http://localhost:8082/ws
+
 XML Input :
 ```XML
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:post="http://fm.com/lifevoy/v2/post">
@@ -159,6 +168,7 @@ XML Input :
 ```
 ##### One Post with Comment Section
 Service URL: http://localhost:8086/ws
+
 XML Input :
 ```XML
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:onep="http://www.fm.com/lifevoy/v2/onepost">
@@ -172,6 +182,7 @@ XML Input :
 ```
 ##### Like Post
 Service URL: http://localhost:8082/ws
+
 XML Input :
 ```XML
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:post="http://fm.com/lifevoy/v2/post">
@@ -186,6 +197,7 @@ XML Input :
 ```
 ##### Dislike Post
 Service URL: http://localhost:8082/ws
+
 XML Input :
 ```XML
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:post="http://fm.com/lifevoy/v2/post">
@@ -200,6 +212,7 @@ XML Input :
 ```
 ##### Comment under a Post
 Service URL: http://localhost:8083/ws
+
 XML Input :
 ```XML
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:com="http://fm.com/lifevoy/v2/comment">
@@ -215,6 +228,7 @@ XML Input :
 ```
 ##### Reply under a Comment
 Service URL: http://localhost:8083/ws
+
 XML Input :
 ```XML
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:com="http://fm.com/lifevoy/v2/comment">
@@ -230,6 +244,7 @@ XML Input :
 ```
 ##### Send a Message
 Service URL: http://localhost:9000/ws
+
 XML Input :
 ```XML
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.messaing">
@@ -245,6 +260,7 @@ XML Input :
 ```
 ##### See a particular Conversation
 Service URL: http://localhost:9000/ws
+
 XML Input :
 ```XML
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.messaing">
@@ -257,6 +273,7 @@ XML Input :
 </soapenv:Envelope>
 ```
 ##### See a list of Conversations with last Message
+
 Service URL: http://localhost:9000/ws
 XML Input :
 ```XML
@@ -272,8 +289,8 @@ XML Input :
 ## Principles
 #### User
 The User Service is running in the 8081 port, whose wsdl file is available at: http://localhost:8081/ws/user.wsdl 
-SoapUI Configuration File: [User Configuration](/SoapUI%20Configurations/LifeVoy-v2-User-soapui-project.xml) 
 
+SoapUI Configuration File: [User Configuration](/SoapUI%20Configurations/LifeVoy-v2-User-soapui-project.xml) 
 
 This service 
 * has a standardized Service Contract in form of this wsdl file
@@ -281,10 +298,12 @@ This service
 * is reusable 
 * is autonomous (doesnt have any dependencey)
 * is stateless (each call is its own thing)
+  
 Abstraction wasnt possible due to the project being too simplistic in nature. Discoverability was out of scope. composability wasnt implemented due to time constrains.
 
 #### Post
 The Post Service is running in the 8082 port, whose wsdl file is available at: http://localhost:8082/ws/post.wsdl
+
 SoapUI Configuration File: [Post Configuration](/SoapUI%20Configurations//Lifevoy-v2-Post-soapui-project.xml) 
 
 This service 
@@ -292,10 +311,12 @@ This service
 * is reusable 
 * is autonomous (doesnt have any dependencey other than the utility service)
 * is stateless (each call is its own thing)
+  
 The service was too central for it to have loose coupling. Abstraction wasnt possible due to the project being too simplistic in nature. Discoverability was out of scope. composability wasnt implemented due to time constrains.
 
 #### Comment
 The Comment Service is running in the 8083 port, whose wsdl file is available at: http://localhost:8083/ws/comment.wsdl
+
 SoapUI Configuration File: [Comment Configuration](/SoapUI%20Configurations/Lifevoy-v2-Comment-soapui-project.xml) 
 
 This service 
@@ -304,10 +325,12 @@ This service
 * have reasonably loose coupling
 * is autonomous (doesnt have any dependencey other than the utility service)
 * is stateless (each call is its own thing)
+  
 Abstraction wasnt possible due to the project being too simplistic in nature. Discoverability was out of scope. composability wasnt implemented due to time constrains.
 
 #### Messaging
 The Messaging Service is running in the 9000 port, whose wsdl file is available at: http://localhost:9000/ws/messaging.wsdl
+
 SoapUI Configuration File: [Messaging Configuration](/SoapUI%20Configurations/LifeVoy-V2-Messaging-soapui-project.xml) 
 
 This service 
@@ -316,37 +339,45 @@ This service
 * is completely decoupled
 * is autonomous (doesnt have any dependencey at all)
 * is stateless (each call is its own thing)
+  
 Abstraction wasnt possible due to the project being too simplistic in nature. Discoverability was out of scope. composability wasnt implemented due to time constrains.
 
 #### Generate Feed
 The GenerateFeed Service is running in the 8084 port, whose wsdl file is available at: http://localhost:8084/ws/feed.wsdl
+
 SoapUI Configuration File: [Generate Feed Configuration](/SoapUI%20Configurations/Lifevoy-v2-Feed-soapui-project.xml) 
 
 This service 
 * has a standardized Service Contract in form of this wsdl file
 * is stateless (each call is its own thing)
+  
 It isnt reusable due to being a task service and specific for a task. This is dependent on 2 entity services making it more coupled and less autonomous. Abstraction wasnt possible due to the project being too simplistic in nature. Discoverability was out of scope. composability wasnt implemented due to time constrains.
 
 #### Generate Profile
 The GenerateProfile Service is running in the 8085 port, whose wsdl file is available at: http://localhost:8085/ws/profile.wsdl
+
 SoapUI Configuration File: [Profile Configuration](/SoapUI%20Configurations/LifeVoy-v2-Profile-soapui-project.xml) 
 
 This service 
 * has a standardized Service Contract in form of this wsdl file
 * is stateless (each call is its own thing)
+  
 It isnt reusable due to being a task service and specific for a task. This is dependent on 2 entity services making it more coupled and less autonomous. Abstraction wasnt possible due to the project being too simplistic in nature. Discoverability was out of scope. composability wasnt implemented due to time constrains.
 
 #### OnePost
 The OnePost Service is running in the 8086 port, whose wsdl file is available at: http://localhost:8086/ws/onepost.wsdl
+
 SoapUI Configuration File: [One Post Configuration](/SoapUI%20Configurations/LifeVoy-v2-OnePost-soapui-project.xml) 
 
 This service 
 * has a standardized Service Contract in form of this wsdl file
 * is stateless (each call is its own thing)
+  
 It isnt reusable due to being a task service and specific for a task. This is dependent on 2 entity services making it more coupled and less autonomous. Abstraction wasnt possible due to the project being too simplistic in nature. Discoverability was out of scope. composability wasnt implemented due to time constrains.
 
 #### Strike Checker
 The StrikeCheck Service is running in the 8087 port, whose wsdl file is available at: http://localhost:8087/ws/strikecheck.wsdl
+
 SoapUI Configuration File: [Strike Checker Configuration](/SoapUI%20Configurations/LifeVoy-v2-StrikeCheck-soapui-project.xml) 
 
 This service 
@@ -355,6 +386,7 @@ This service
 * is completely decoupled
 * is autonomous (doesnt have any dependencey at all)
 * is stateless (each call is its own thing)
+  
 Abstraction wasnt possible due to the project being too simplistic in nature. Discoverability was out of scope. composability wasnt implemented due to time constrains.
 
 ### Summary:
