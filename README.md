@@ -32,6 +32,243 @@ An web service based backend server for a twitter-esque dummy software.
 ## Mapping Features to Operations and Interdependencies
 The mentioned features are implemented through the following relationship between the services
 ![diagram](LifeVoy-Page-3.jpg)
+
+##### Login
+Service URL: http://localhost:8081/ws
+XML Input :
+```XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://fm.com/lifevoy/v2/user">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <user:LoginRequest>
+         <user:username>username1</user:username>
+         <user:password>password1</user:password>
+      </user:LoginRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+
+##### Signup
+Service URL: http://localhost:8081/ws
+XML Input :
+```XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://fm.com/lifevoy/v2/user">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <user:SignupRequest>
+         <user:username>username11</user:username>
+         <user:password>password11</user:password>
+      </user:SignupRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+
+##### Follow
+Service URL: http://localhost:8081/ws
+XML Input :
+```XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://fm.com/lifevoy/v2/user">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <user:FollowUserRequest>
+         <user:requesterUsername>username3</user:requesterUsername>
+         <user:targetUsername>username4</user:targetUsername>
+      </user:FollowUserRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+##### Unfollow
+Service URL: http://localhost:8081/ws
+XML Input :
+```XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://fm.com/lifevoy/v2/user">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <user:UnfollowUserRequest>
+         <user:requesterUsername>username1</user:requesterUsername>
+         <user:targetUsername>username3</user:targetUsername>
+      </user:UnfollowUserRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+##### Get Followers
+Service URL: http://localhost:8081/ws
+XML Input :
+```XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://fm.com/lifevoy/v2/user">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <user:GetFollowersRequest>
+         <user:username>username3</user:username>
+      </user:GetFollowersRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+##### Get Followings
+Service URL: http://localhost:8081/ws
+XML Input :
+```XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://fm.com/lifevoy/v2/user">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <user:GetFollowingsRequest>
+         <user:username>username1</user:username>
+      </user:GetFollowingsRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+##### Home Feed
+Service URL: http://localhost:8084/ws
+XML Input :
+```XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:feed="http://www.fm.com/lifevoy/v2/feed">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <feed:GetFeedRequest>
+         <feed:username>username1</feed:username>
+      </feed:GetFeedRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+##### Profile Feed
+Service URL: http://localhost:8085/ws
+XML Input :
+```XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:prof="http://www.fm.com/lifevoy/v2/profile">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <prof:GetProfileRequest>
+         <prof:username>username3</prof:username>
+      </prof:GetProfileRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+##### Create Post
+Service URL: http://localhost:8082/ws
+XML Input :
+```XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:post="http://fm.com/lifevoy/v2/post">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <post:CreatePostRequest>
+         <post:posterUsername>username1</post:posterUsername>
+         <post:text>shesher post</post:text>
+      </post:CreatePostRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+##### One Post with Comment Section
+Service URL: http://localhost:8086/ws
+XML Input :
+```XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:onep="http://www.fm.com/lifevoy/v2/onepost">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <onep:GetOnePostRequest>
+         <onep:postID>15</onep:postID>
+      </onep:GetOnePostRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+##### Like Post
+Service URL: http://localhost:8082/ws
+XML Input :
+```XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:post="http://fm.com/lifevoy/v2/post">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <post:LikePostRequest>
+         <post:postID>3</post:postID>
+         <post:requesterUsername>username5</post:requesterUsername>
+      </post:LikePostRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+##### Dislike Post
+Service URL: http://localhost:8082/ws
+XML Input :
+```XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:post="http://fm.com/lifevoy/v2/post">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <post:DislikePostRequest>
+         <post:postID>3</post:postID>
+         <post:requesterUsername>username3</post:requesterUsername>
+      </post:DislikePostRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+##### Comment under a Post
+Service URL: http://localhost:8083/ws
+XML Input :
+```XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:com="http://fm.com/lifevoy/v2/comment">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <com:CommentRequest>
+         <com:postID>11</com:postID>
+         <com:username>username2</com:username>
+         <com:text>lol</com:text>
+      </com:CommentRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+##### Reply under a Comment
+Service URL: http://localhost:8083/ws
+XML Input :
+```XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:com="http://fm.com/lifevoy/v2/comment">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <com:ReplyRequest>
+         <com:commentID>?</com:commentID>
+         <com:username>?</com:username>
+         <com:text>?</com:text>
+      </com:ReplyRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+##### Send a Message
+Service URL: http://localhost:9000/ws
+XML Input :
+```XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.messaing">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:SendMessageRequest>
+         <ser:sender>username1</ser:sender>
+         <ser:receiver>username2</ser:receiver>
+         <ser:text>fbmskafmb</ser:text>
+      </ser:SendMessageRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+##### See a particular Conversation
+Service URL: http://localhost:9000/ws
+XML Input :
+```XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.messaing">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:GetChatLogRequest>
+         <ser:chatID>3</ser:chatID>
+      </ser:GetChatLogRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+##### See a list of Conversations with last Message
+Service URL: http://localhost:9000/ws
+XML Input :
+```XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.messaing">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:GetListOfChatsRequest>
+         <ser:username>username1</ser:username>
+      </ser:GetListOfChatsRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
 ## Principles
 #### User
 The User Service is running in the 8081 port, whose wsdl file is available at: http://localhost:8081/ws/user.wsdl 

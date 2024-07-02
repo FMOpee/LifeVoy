@@ -33,7 +33,7 @@ public class PostEligibilityClient {
                 "      </str:PostEligibilityCheckRequest>\n" +
                 "   </soapenv:Body>\n" +
                 "</soapenv:Envelope>";
-        
+
         Document document = getParsedOutput(xmlInput,"http://localhost:8087/ws");
 
         /***************************** RESPONSE ***************************************
