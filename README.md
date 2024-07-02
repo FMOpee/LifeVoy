@@ -357,5 +357,17 @@ This service
 * is stateless (each call is its own thing)
 Abstraction wasnt possible due to the project being too simplistic in nature. Discoverability was out of scope. composability wasnt implemented due to time constrains.
 
+### Summary:
+
+| **Principle**        | **User** | **Post** | **Comment** | **Messageing** | **Feed** | **Profile** | **OnePost** | **StrikeChecker** |
+| -------------------- | :------: | :------: | :---------: | :------------: | :------: | :---------: | :---------: | :---------------: |
+| *Service Contract* |    ✅     |    ✅     |      ✅      |       ✅        |    ✅     |      ✅      |      ✅      |         ✅         |
+| *Loose Coupling*   |    ✅     |          |      ✅      |       ✅        |          |             |             |         ✅         |
+| *Abstraction*      |          |          |             |                |          |             |             |                   |
+| *Reusability*      |    ✅     |    ✅     |      ✅      |       ✅        |          |             |             |         ✅         |
+| *Autonomy*         |    ✅     |    ✅     |      ✅      |       ✅        |          |             |             |         ✅         |
+| *Statelessness*    |    ✅     |    ✅     |      ✅      |       ✅        |    ✅     |      ✅      |      ✅      |         ✅         |
+| *Dicoverability*   |          |          |             |                |          |             |             |                   |
+| *Composability*    |          |          |             |                |          |             |             |                   |
 
 
