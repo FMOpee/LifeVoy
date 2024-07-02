@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="0b4fca83-63ac-422f-9ed7-6fccec9c941d" activeEnvironment="Default" name="Lifevoy v2 Post" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="373909f9-371a-46be-85fd-bba7d0bf7d58" wsaVersion="NONE" name="PostSoap11" type="wsdl" bindingName="{http://fm.com/lifevoy/v2/post}PostSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:8082/ws/post.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8082/ws/post.wsdl"><con:part><con:url>http://localhost:8082/ws/post.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://fm.com/lifevoy/v2/post" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://fm.com/lifevoy/v2/post" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://fm.com/lifevoy/v2/post">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://fm.com/lifevoy/v2/post" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:complexType name="Post">
+        <xsd:sequence>
+          <xsd:element name="postID" type="xsd:long"/>
+          <xsd:element name="posterUsername" type="xsd:string"/>
+          <xsd:element name="text" type="xsd:string"/>
+          <xsd:element maxOccurs="unbounded" name="likerUsernames" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!--//////////////////////////////////////////////////////////////////////-->
+      <xsd:element name="CreatePostRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="posterUsername" type="xsd:string"/>
+            <xsd:element name="text" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreatePostResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="success" type="xsd:boolean"/>
+            <xsd:element name="post" type="tns:Post"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--//////////////////////////////////////////////////////////////////////-->
+      <xsd:element name="GetPostsUsingPosterRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="posterUsernames" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetPostsUsingPosterResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="post" type="tns:Post"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--//////////////////////////////////////////////////////////////////////-->
+      <xsd:element name="GetPostUsingIDRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="postID" type="xsd:long"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetPostUsingIDResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="post" type="tns:Post"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--//////////////////////////////////////////////////////////////////////-->
+      <xsd:element name="LikePostRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="postID" type="xsd:long"/>
+            <xsd:element name="requesterUsername" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--//////////////////////////////////////////////////////////////////////-->
+      <xsd:element name="DislikePostRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="postID" type="xsd:long"/>
+            <xsd:element name="requesterUsername" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="CreatePostRequest">
+    <wsdl:part element="tns:CreatePostRequest" name="CreatePostRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetPostUsingIDResponse">
+    <wsdl:part element="tns:GetPostUsingIDResponse" name="GetPostUsingIDResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetPostUsingIDRequest">
+    <wsdl:part element="tns:GetPostUsingIDRequest" name="GetPostUsingIDRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetPostsUsingPosterRequest">
+    <wsdl:part element="tns:GetPostsUsingPosterRequest" name="GetPostsUsingPosterRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CreatePostResponse">
+    <wsdl:part element="tns:CreatePostResponse" name="CreatePostResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetPostsUsingPosterResponse">
+    <wsdl:part element="tns:GetPostsUsingPosterResponse" name="GetPostsUsingPosterResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DislikePostRequest">
+    <wsdl:part element="tns:DislikePostRequest" name="DislikePostRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="LikePostRequest">
+    <wsdl:part element="tns:LikePostRequest" name="LikePostRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Post">
+    <wsdl:operation name="CreatePost">
+      <wsdl:input message="tns:CreatePostRequest" name="CreatePostRequest"></wsdl:input>
+      <wsdl:output message="tns:CreatePostResponse" name="CreatePostResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPostUsingID">
+      <wsdl:input message="tns:GetPostUsingIDRequest" name="GetPostUsingIDRequest"></wsdl:input>
+      <wsdl:output message="tns:GetPostUsingIDResponse" name="GetPostUsingIDResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPostsUsingPoster">
+      <wsdl:input message="tns:GetPostsUsingPosterRequest" name="GetPostsUsingPosterRequest"></wsdl:input>
+      <wsdl:output message="tns:GetPostsUsingPosterResponse" name="GetPostsUsingPosterResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DislikePost">
+      <wsdl:input message="tns:DislikePostRequest" name="DislikePostRequest"></wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="LikePost">
+      <wsdl:input message="tns:LikePostRequest" name="LikePostRequest"></wsdl:input>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PostSoap11" type="tns:Post">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CreatePost">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CreatePostRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreatePostResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPostUsingID">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetPostUsingIDRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetPostUsingIDResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPostsUsingPoster">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetPostsUsingPosterRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetPostsUsingPosterResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DislikePost">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="DislikePostRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="LikePost">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="LikePostRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PostService">
+    <wsdl:port binding="tns:PostSoap11" name="PostSoap11">
+      <soap:address location="http://localhost:8082/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8082/ws</con:endpoint></con:endpoints><con:operation id="45a98ffa-d6b3-41bb-a68c-235a91870fec" isOneWay="false" action="" name="CreatePost" bindingOperationName="CreatePost" type="Request-Response" outputName="CreatePostResponse" inputName="CreatePostRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f7288f97-c473-4678-b58d-0d5986de9016" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:post="http://fm.com/lifevoy/v2/post">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <post:CreatePostRequest>\r
+         <post:posterUsername>username1</post:posterUsername>\r
+         <post:text>shesher post</post:text>\r
+      </post:CreatePostRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://fm.com/lifevoy/v2/post/Post/CreatePostRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="79ae4196-fd8a-4d4a-b673-37040c00c465" isOneWay="false" action="" name="DislikePost" bindingOperationName="DislikePost" type="One-Way" inputName="DislikePostRequest" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8cb04b96-4088-43c2-992e-94ca1791c2a1" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:post="http://fm.com/lifevoy/v2/post">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <post:DislikePostRequest>\r
+         <post:postID>3</post:postID>\r
+         <post:requesterUsername>username3</post:requesterUsername>\r
+      </post:DislikePostRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://fm.com/lifevoy/v2/post/Post/DislikePostRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="41601dd1-633d-42a6-9934-045a4a433839" isOneWay="false" action="" name="GetPostsUsingPoster" bindingOperationName="GetPostsUsingPoster" type="Request-Response" outputName="GetPostsUsingPosterResponse" inputName="GetPostsUsingPosterRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="bbb5eb70-51d4-4491-9a3d-3d76633f37fa" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:post="http://fm.com/lifevoy/v2/post">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <post:GetPostsUsingPosterRequest>\r
+         <!--1 or more repetitions:-->\r
+         <post:posterUsernames>username1</post:posterUsernames>\r
+      </post:GetPostsUsingPosterRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://fm.com/lifevoy/v2/post/Post/GetPostsUsingPosterRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="3d59ebe6-4864-49aa-9559-273e611d8fdf" isOneWay="false" action="" name="GetPostUsingID" bindingOperationName="GetPostUsingID" type="Request-Response" outputName="GetPostUsingIDResponse" inputName="GetPostUsingIDRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8f218c25-5bd3-4e95-ad9b-15d5f2c74864" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:post="http://fm.com/lifevoy/v2/post">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <post:GetPostUsingIDRequest>\r
+         <post:postID>40</post:postID>\r
+      </post:GetPostUsingIDRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://fm.com/lifevoy/v2/post/Post/GetPostUsingIDRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="01fb1523-9c90-40f3-b2af-2e5123ac2145" isOneWay="false" action="" name="LikePost" bindingOperationName="LikePost" type="One-Way" inputName="LikePostRequest" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="5515d8d9-49eb-4cc2-b540-e63b6bae21fa" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8082/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:post="http://fm.com/lifevoy/v2/post">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <post:LikePostRequest>\r
+         <post:postID>3</post:postID>\r
+         <post:requesterUsername>username5</post:requesterUsername>\r
+      </post:LikePostRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://fm.com/lifevoy/v2/post/Post/LikePostRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

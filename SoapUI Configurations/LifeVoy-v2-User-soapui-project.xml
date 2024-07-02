@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="557ab430-d3b3-47ec-883e-c6beda85a3f2" activeEnvironment="Default" name="LifeVoy v2 User" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="b2cdfa97-54d9-4106-9c7d-af5140485f62" wsaVersion="NONE" name="UserSoap11" type="wsdl" bindingName="{http://fm.com/lifevoy/v2/user}UserSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:8081/ws/user.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8081/ws/user.wsdl"><con:part><con:url>http://localhost:8081/ws/user.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://fm.com/lifevoy/v2/user" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://fm.com/lifevoy/v2/user" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://fm.com/lifevoy/v2/user">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://fm.com/lifevoy/v2/user" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:complexType name="PublicProfile">
+        <xsd:sequence>
+          <xsd:element name="username" type="xsd:string"/>
+          <xsd:element maxOccurs="unbounded" name="followers" type="xsd:string"/>
+          <xsd:element maxOccurs="unbounded" name="followings" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="User">
+        <xsd:sequence>
+          <xsd:element name="profile" type="tns:PublicProfile"/>
+          <xsd:element name="password" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!--///////////////////////////////////////////////////////////////-->
+      <xsd:element name="GetFollowersRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="username" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetFollowersResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="followerUsernames" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--///////////////////////////////////////////////////////////////-->
+      <xsd:element name="GetFollowingsRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="username" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetFollowingsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="followingUsernames" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--///////////////////////////////////////////////////////////////-->
+      <xsd:element name="FollowUserRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="requesterUsername" type="xsd:string"/>
+            <xsd:element name="targetUsername" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--///////////////////////////////////////////////////////////////-->
+      <xsd:element name="UnfollowUserRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="requesterUsername" type="xsd:string"/>
+            <xsd:element name="targetUsername" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--///////////////////////////////////////////////////////////////-->
+      <xsd:element name="LoginRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="username" type="xsd:string"/>
+            <xsd:element name="password" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="LoginResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="success" type="xsd:boolean"/>
+            <xsd:element name="user" type="tns:User"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--///////////////////////////////////////////////////////////////-->
+      <xsd:element name="SignupRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="username" type="xsd:string"/>
+            <xsd:element name="password" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SignupResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="success" type="xsd:boolean"/>
+            <xsd:element name="user" type="tns:User"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--///////////////////////////////////////////////////////////////-->
+      <xsd:element name="GetUserRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="usernames" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="profiles" type="tns:PublicProfile"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--///////////////////////////////////////////////////////////////-->
+      <xsd:element name="GetAllUserNamesRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="token" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetAllUserNamesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="usernames" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="LoginResponse">
+    <wsdl:part element="tns:LoginResponse" name="LoginResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetUserRequest">
+    <wsdl:part element="tns:GetUserRequest" name="GetUserRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="FollowUserRequest">
+    <wsdl:part element="tns:FollowUserRequest" name="FollowUserRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetFollowersResponse">
+    <wsdl:part element="tns:GetFollowersResponse" name="GetFollowersResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="LoginRequest">
+    <wsdl:part element="tns:LoginRequest" name="LoginRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SignupRequest">
+    <wsdl:part element="tns:SignupRequest" name="SignupRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SignupResponse">
+    <wsdl:part element="tns:SignupResponse" name="SignupResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetFollowersRequest">
+    <wsdl:part element="tns:GetFollowersRequest" name="GetFollowersRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllUserNamesResponse">
+    <wsdl:part element="tns:GetAllUserNamesResponse" name="GetAllUserNamesResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllUserNamesRequest">
+    <wsdl:part element="tns:GetAllUserNamesRequest" name="GetAllUserNamesRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetFollowingsRequest">
+    <wsdl:part element="tns:GetFollowingsRequest" name="GetFollowingsRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetFollowingsResponse">
+    <wsdl:part element="tns:GetFollowingsResponse" name="GetFollowingsResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnfollowUserRequest">
+    <wsdl:part element="tns:UnfollowUserRequest" name="UnfollowUserRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetUserResponse">
+    <wsdl:part element="tns:GetUserResponse" name="GetUserResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="User">
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginRequest" name="LoginRequest"></wsdl:input>
+      <wsdl:output message="tns:LoginResponse" name="LoginResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <wsdl:input message="tns:GetUserRequest" name="GetUserRequest"></wsdl:input>
+      <wsdl:output message="tns:GetUserResponse" name="GetUserResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FollowUser">
+      <wsdl:input message="tns:FollowUserRequest" name="FollowUserRequest"></wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetFollowers">
+      <wsdl:input message="tns:GetFollowersRequest" name="GetFollowersRequest"></wsdl:input>
+      <wsdl:output message="tns:GetFollowersResponse" name="GetFollowersResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Signup">
+      <wsdl:input message="tns:SignupRequest" name="SignupRequest"></wsdl:input>
+      <wsdl:output message="tns:SignupResponse" name="SignupResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUserNames">
+      <wsdl:input message="tns:GetAllUserNamesRequest" name="GetAllUserNamesRequest"></wsdl:input>
+      <wsdl:output message="tns:GetAllUserNamesResponse" name="GetAllUserNamesResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFollowings">
+      <wsdl:input message="tns:GetFollowingsRequest" name="GetFollowingsRequest"></wsdl:input>
+      <wsdl:output message="tns:GetFollowingsResponse" name="GetFollowingsResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnfollowUser">
+      <wsdl:input message="tns:UnfollowUserRequest" name="UnfollowUserRequest"></wsdl:input>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UserSoap11" type="tns:User">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="LoginRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="LoginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetUserRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FollowUser">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="FollowUserRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetFollowers">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetFollowersRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetFollowersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Signup">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="SignupRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="SignupResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUserNames">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAllUserNamesRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAllUserNamesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFollowings">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetFollowingsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetFollowingsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnfollowUser">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="UnfollowUserRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UserService">
+    <wsdl:port binding="tns:UserSoap11" name="UserSoap11">
+      <soap:address location="http://localhost:8081/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8081/ws</con:endpoint></con:endpoints><con:operation id="cdb8eee5-e540-4efc-a818-4d6cf37ef276" isOneWay="false" action="" name="FollowUser" bindingOperationName="FollowUser" type="One-Way" inputName="FollowUserRequest" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="6d0ac22c-4491-4e39-a410-109ea44f64aa" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://fm.com/lifevoy/v2/user">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <user:FollowUserRequest>\r
+         <user:requesterUsername>username3</user:requesterUsername>\r
+         <user:targetUsername>username4</user:targetUsername>\r
+      </user:FollowUserRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://fm.com/lifevoy/v2/user/User/FollowUserRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="776e25a9-e040-4ea6-900a-7b81486278e8" isOneWay="false" action="" name="GetFollowers" bindingOperationName="GetFollowers" type="Request-Response" outputName="GetFollowersResponse" inputName="GetFollowersRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c3356bc4-9df4-46b8-876c-5b648471aebd" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://fm.com/lifevoy/v2/user">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <user:GetFollowersRequest>\r
+         <user:username>username3</user:username>\r
+      </user:GetFollowersRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://fm.com/lifevoy/v2/user/User/GetFollowersRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="e22327ee-8822-489a-9a70-c877cc488021" isOneWay="false" action="" name="GetFollowings" bindingOperationName="GetFollowings" type="Request-Response" outputName="GetFollowingsResponse" inputName="GetFollowingsRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8b8a830c-a48e-4ae5-a764-c76b3fcdb207" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://fm.com/lifevoy/v2/user">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <user:GetFollowingsRequest>\r
+         <user:username>username1</user:username>\r
+      </user:GetFollowingsRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://fm.com/lifevoy/v2/user/User/GetFollowingsRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="e6aa4958-5ae0-4b67-80d4-d88736a417d7" isOneWay="false" action="" name="GetUser" bindingOperationName="GetUser" type="Request-Response" outputName="GetUserResponse" inputName="GetUserRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="29238bdd-21ce-4f8c-88c4-cbd60c02f9b6" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://fm.com/lifevoy/v2/user">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <user:GetUserRequest>\r
+         <!--1 or more repetitions:-->\r
+         <user:usernames>username3</user:usernames>\r
+      </user:GetUserRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://fm.com/lifevoy/v2/user/User/GetUserRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="fdbeaa2b-feeb-4acc-ac41-e8bcb6093aaa" isOneWay="false" action="" name="Login" bindingOperationName="Login" type="Request-Response" outputName="LoginResponse" inputName="LoginRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b9ff2030-5772-4870-965e-a4a3de5dff25" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://fm.com/lifevoy/v2/user">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <user:LoginRequest>\r
+         <user:username>username1</user:username>\r
+         <user:password>password1</user:password>\r
+      </user:LoginRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://fm.com/lifevoy/v2/user/User/LoginRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="09223451-7d27-4de8-862a-7bb3962a35af" isOneWay="false" action="" name="Signup" bindingOperationName="Signup" type="Request-Response" outputName="SignupResponse" inputName="SignupRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="186fb544-f68b-4011-aff8-38ed5ee09060" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://fm.com/lifevoy/v2/user">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <user:SignupRequest>\r
+         <user:username>username11</user:username>\r
+         <user:password>password11</user:password>\r
+      </user:SignupRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://fm.com/lifevoy/v2/user/User/SignupRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="2e9d8f53-5ddd-49b8-ab32-bab396daec0e" isOneWay="false" action="" name="UnfollowUser" bindingOperationName="UnfollowUser" type="One-Way" inputName="UnfollowUserRequest" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="2ce71b78-4fe9-49c5-be88-96b36694b0d7" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://fm.com/lifevoy/v2/user">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <user:UnfollowUserRequest>\r
+         <user:requesterUsername>username1</user:requesterUsername>\r
+         <user:targetUsername>username3</user:targetUsername>\r
+      </user:UnfollowUserRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://fm.com/lifevoy/v2/user/User/UnfollowUserRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="f15e7da2-e69b-4693-ab72-d07a68dda6d1" isOneWay="false" action="" name="GetAllUserNames" bindingOperationName="GetAllUserNames" type="Request-Response" outputName="GetAllUserNamesResponse" inputName="GetAllUserNamesRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c4015360-1f46-496f-9894-11578f74caf8" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://fm.com/lifevoy/v2/user">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <user:GetAllUserNamesRequest>\r
+         <user:token>123456789</user:token>\r
+      </user:GetAllUserNamesRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://fm.com/lifevoy/v2/user/User/GetAllUserNamesRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

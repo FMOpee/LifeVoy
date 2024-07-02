@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="85ca307a-6729-4a01-9df2-839097a40931" activeEnvironment="Default" name="Lifevoy v2 Comment" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="5b05c9b6-98d6-401e-a65a-85f21f69d987" wsaVersion="NONE" name="CommentSoap11" type="wsdl" bindingName="{http://fm.com/lifevoy/v2/comment}CommentSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:8083/ws/comment.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8083/ws/comment.wsdl"><con:part><con:url>http://localhost:8083/ws/comment.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://fm.com/lifevoy/v2/comment" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://fm.com/lifevoy/v2/comment" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://fm.com/lifevoy/v2/comment">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://fm.com/lifevoy/v2/comment" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:complexType name="Reply">
+        <xsd:sequence>
+          <xsd:element name="username" type="xsd:string"/>
+          <xsd:element name="text" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Comment">
+        <xsd:sequence>
+          <xsd:element name="commentID" type="xsd:long"/>
+          <xsd:element name="postID" type="xsd:long"/>
+          <xsd:element name="commenter" type="xsd:string"/>
+          <xsd:element name="text" type="xsd:string"/>
+          <xsd:element maxOccurs="unbounded" name="replies" type="tns:Reply"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!--//////////////////////////////////////////////////////////////////////-->
+      <xsd:element name="GetCommentsRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="postID" type="xsd:long"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetCommentsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="comments" type="tns:Comment"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--//////////////////////////////////////////////////////////////////////-->
+      <xsd:element name="CommentRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="postID" type="xsd:long"/>
+            <xsd:element name="username" type="xsd:string"/>
+            <xsd:element name="text" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CommentResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="comment" type="tns:Comment"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--//////////////////////////////////////////////////////////////////////-->
+      <xsd:element name="ReplyRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="commentID" type="xsd:long"/>
+            <xsd:element name="username" type="xsd:string"/>
+            <xsd:element name="text" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReplyResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="comment" type="tns:Comment"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="GetCommentsResponse">
+    <wsdl:part element="tns:GetCommentsResponse" name="GetCommentsResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ReplyResponse">
+    <wsdl:part element="tns:ReplyResponse" name="ReplyResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ReplyRequest">
+    <wsdl:part element="tns:ReplyRequest" name="ReplyRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CommentRequest">
+    <wsdl:part element="tns:CommentRequest" name="CommentRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CommentResponse">
+    <wsdl:part element="tns:CommentResponse" name="CommentResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCommentsRequest">
+    <wsdl:part element="tns:GetCommentsRequest" name="GetCommentsRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Comment">
+    <wsdl:operation name="GetComments">
+      <wsdl:input message="tns:GetCommentsRequest" name="GetCommentsRequest"></wsdl:input>
+      <wsdl:output message="tns:GetCommentsResponse" name="GetCommentsResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reply">
+      <wsdl:input message="tns:ReplyRequest" name="ReplyRequest"></wsdl:input>
+      <wsdl:output message="tns:ReplyResponse" name="ReplyResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Comment">
+      <wsdl:input message="tns:CommentRequest" name="CommentRequest"></wsdl:input>
+      <wsdl:output message="tns:CommentResponse" name="CommentResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CommentSoap11" type="tns:Comment">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetComments">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetCommentsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetCommentsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reply">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="ReplyRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ReplyResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Comment">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CommentRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CommentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CommentService">
+    <wsdl:port binding="tns:CommentSoap11" name="CommentSoap11">
+      <soap:address location="http://localhost:8083/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8083/ws</con:endpoint></con:endpoints><con:operation id="53047ee7-d1d8-4336-8353-56bdc29ffcc3" isOneWay="false" action="" name="Comment" bindingOperationName="Comment" type="Request-Response" outputName="CommentResponse" inputName="CommentRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="199195b5-2049-4461-a02f-e3e99ef29853" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8083/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:com="http://fm.com/lifevoy/v2/comment">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <com:CommentRequest>\r
+         <com:postID>11</com:postID>\r
+         <com:username>username2</com:username>\r
+         <com:text>lol</com:text>\r
+      </com:CommentRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://fm.com/lifevoy/v2/comment/Comment/CommentRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="736e46c2-a701-434e-b84a-06021de3c7e6" isOneWay="false" action="" name="GetComments" bindingOperationName="GetComments" type="Request-Response" outputName="GetCommentsResponse" inputName="GetCommentsRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b2811a81-642f-484c-a8dd-75297af90735" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8083/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:com="http://fm.com/lifevoy/v2/comment">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <com:GetCommentsRequest>\r
+         <com:postID>11</com:postID>\r
+      </com:GetCommentsRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://fm.com/lifevoy/v2/comment/Comment/GetCommentsRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="8c8fdf99-7185-4c03-8e1b-3abff1aff68f" isOneWay="false" action="" name="Reply" bindingOperationName="Reply" type="Request-Response" outputName="ReplyResponse" inputName="ReplyRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4feaf593-827f-4946-b8c1-f6d2fb24b7bd" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8083/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:com="http://fm.com/lifevoy/v2/comment">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <com:ReplyRequest>\r
+         <com:commentID>?</com:commentID>\r
+         <com:username>?</com:username>\r
+         <com:text>?</com:text>\r
+      </com:ReplyRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://fm.com/lifevoy/v2/comment/Comment/ReplyRequest"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

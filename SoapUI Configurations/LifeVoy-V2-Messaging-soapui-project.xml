@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="e8e25263-cd13-40c0-85c4-935b88b81d96" activeEnvironment="Default" name="LifeVoy V2 Messaging" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="2bd3d78b-cbef-418a-8cc2-d0041f553f2a" wsaVersion="NONE" name="MessagingSoap11" type="wsdl" bindingName="{http://service.messaing}MessagingSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:9000/ws/messaging.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:9000/ws/messaging.wsdl"><con:part><con:url>http://localhost:9000/ws/messaging.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://service.messaing" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://service.messaing" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service.messaing">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://service.messaing" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:complexType name="Message">
+        <xsd:sequence>
+          <xsd:element name="senderUsername" type="xsd:string"/>
+          <xsd:element name="chatID" type="xsd:long"/>
+          <xsd:element name="text" type="xsd:string"/>
+          <xsd:element name="timestamp" type="xsd:long"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Chats">
+        <xsd:sequence>
+          <xsd:element name="chatID" type="xsd:long"/>
+          <xsd:element maxOccurs="unbounded" name="senders" type="xsd:string"/>
+          <xsd:element maxOccurs="unbounded" name="messages" type="tns:Message"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ChatHead">
+        <xsd:sequence>
+          <xsd:element name="chatID" type="xsd:long"/>
+          <xsd:element name="lastMessage" type="tns:Message"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="GetChatLogRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="chatID" type="xsd:long"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetListOfChatsRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="username" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendMessageRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="sender" type="xsd:string"/>
+            <xsd:element name="receiver" type="xsd:string"/>
+            <xsd:element name="text" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetChatLogResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="chatlog" type="tns:Chats"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetListOfChatsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="chatheads" type="tns:ChatHead"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendMessageResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="success" type="xsd:boolean"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetMessagesRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="participant1" type="xsd:string"/>
+            <xsd:element name="participant2" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetMessagesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="messages" type="tns:Message"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="GetMessagesRequest">
+    <wsdl:part element="tns:GetMessagesRequest" name="GetMessagesRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetChatLogResponse">
+    <wsdl:part element="tns:GetChatLogResponse" name="GetChatLogResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SendMessageResponse">
+    <wsdl:part element="tns:SendMessageResponse" name="SendMessageResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetMessagesResponse">
+    <wsdl:part element="tns:GetMessagesResponse" name="GetMessagesResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetListOfChatsRequest">
+    <wsdl:part element="tns:GetListOfChatsRequest" name="GetListOfChatsRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetChatLogRequest">
+    <wsdl:part element="tns:GetChatLogRequest" name="GetChatLogRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SendMessageRequest">
+    <wsdl:part element="tns:SendMessageRequest" name="SendMessageRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetListOfChatsResponse">
+    <wsdl:part element="tns:GetListOfChatsResponse" name="GetListOfChatsResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Messaging">
+    <wsdl:operation name="GetMessages">
+      <wsdl:input message="tns:GetMessagesRequest" name="GetMessagesRequest"></wsdl:input>
+      <wsdl:output message="tns:GetMessagesResponse" name="GetMessagesResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChatLog">
+      <wsdl:input message="tns:GetChatLogRequest" name="GetChatLogRequest"></wsdl:input>
+      <wsdl:output message="tns:GetChatLogResponse" name="GetChatLogResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <wsdl:input message="tns:SendMessageRequest" name="SendMessageRequest"></wsdl:input>
+      <wsdl:output message="tns:SendMessageResponse" name="SendMessageResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListOfChats">
+      <wsdl:input message="tns:GetListOfChatsRequest" name="GetListOfChatsRequest"></wsdl:input>
+      <wsdl:output message="tns:GetListOfChatsResponse" name="GetListOfChatsResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MessagingSoap11" type="tns:Messaging">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetMessages">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetMessagesRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetMessagesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChatLog">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetChatLogRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetChatLogResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="SendMessageRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="SendMessageResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListOfChats">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetListOfChatsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetListOfChatsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MessagingService">
+    <wsdl:port binding="tns:MessagingSoap11" name="MessagingSoap11">
+      <soap:address location="http://localhost:9000/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:9000/ws</con:endpoint></con:endpoints><con:operation id="857bb775-b8f4-4631-b511-14a6c5b074e8" isOneWay="false" action="" name="GetChatLog" bindingOperationName="GetChatLog" type="Request-Response" outputName="GetChatLogResponse" inputName="GetChatLogRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d2ede03c-781e-4f36-86df-77c3279eb6c1" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9000/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.messaing">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:GetChatLogRequest>\r
+         <ser:chatID>3</ser:chatID>\r
+      </ser:GetChatLogRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.messaing/Messaging/GetChatLogRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="8576f69b-501d-4986-be90-5a84a6e59b8e" isOneWay="false" action="" name="GetListOfChats" bindingOperationName="GetListOfChats" type="Request-Response" outputName="GetListOfChatsResponse" inputName="GetListOfChatsRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="422b83ec-b028-4f7f-9848-bc08015ab1f9" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9000/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.messaing">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:GetListOfChatsRequest>\r
+         <ser:username>username1</ser:username>\r
+      </ser:GetListOfChatsRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.messaing/Messaging/GetListOfChatsRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="64e66eff-8b91-4a54-903f-2875bc2d7b1b" isOneWay="false" action="" name="GetMessages" bindingOperationName="GetMessages" type="Request-Response" outputName="GetMessagesResponse" inputName="GetMessagesRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="32a5b45c-e0da-46da-aece-597657403e79" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9000/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.messaing">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:GetMessagesRequest>\r
+         <ser:participant1>username1</ser:participant1>\r
+         <ser:participant2>username2</ser:participant2>\r
+      </ser:GetMessagesRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.messaing/Messaging/GetMessagesRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="b9098df1-664f-4a14-9bc6-0363148f3ae5" isOneWay="false" action="" name="SendMessage" bindingOperationName="SendMessage" type="Request-Response" outputName="SendMessageResponse" inputName="SendMessageRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b39ee85b-91a7-488f-b8f8-c7c9755d8eaa" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9000/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.messaing">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:SendMessageRequest>\r
+         <ser:sender>username1</ser:sender>\r
+         <ser:receiver>username2</ser:receiver>\r
+         <ser:text>fbmskafmb</ser:text>\r
+      </ser:SendMessageRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.messaing/Messaging/SendMessageRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

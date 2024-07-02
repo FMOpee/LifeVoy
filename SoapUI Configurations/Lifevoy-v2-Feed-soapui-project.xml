@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="5941fbf4-eb24-4261-a3ae-f49951011065" activeEnvironment="Default" name="Lifevoy v2 Feed" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="95b8e79f-00e3-482a-b6ca-1440c7500e6e" wsaVersion="NONE" name="FeedSoap11" type="wsdl" bindingName="{http://www.fm.com/lifevoy/v2/feed}FeedSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:8084/ws/feed.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8084/ws/feed.wsdl"><con:part><con:url>http://localhost:8084/ws/feed.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.fm.com/lifevoy/v2/feed" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.fm.com/lifevoy/v2/feed" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.fm.com/lifevoy/v2/feed">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://www.fm.com/lifevoy/v2/feed" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:complexType name="Post">
+        <xsd:sequence>
+          <xsd:element name="postID" type="xsd:long"/>
+          <xsd:element name="text" type="xsd:string"/>
+          <xsd:element name="posterUsername" type="xsd:string"/>
+          <xsd:element maxOccurs="unbounded" name="likers" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="GetFeedRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="username" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetFeedResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="posts" type="tns:Post"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="GetFeedRequest">
+    <wsdl:part element="tns:GetFeedRequest" name="GetFeedRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetFeedResponse">
+    <wsdl:part element="tns:GetFeedResponse" name="GetFeedResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Feed">
+    <wsdl:operation name="GetFeed">
+      <wsdl:input message="tns:GetFeedRequest" name="GetFeedRequest"></wsdl:input>
+      <wsdl:output message="tns:GetFeedResponse" name="GetFeedResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FeedSoap11" type="tns:Feed">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetFeed">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetFeedRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetFeedResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FeedService">
+    <wsdl:port binding="tns:FeedSoap11" name="FeedSoap11">
+      <soap:address location="http://localhost:8084/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8084/ws</con:endpoint></con:endpoints><con:operation id="71601b15-da51-42f0-a800-1901450c791e" isOneWay="false" action="" name="GetFeed" bindingOperationName="GetFeed" type="Request-Response" outputName="GetFeedResponse" inputName="GetFeedRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="5abe6187-26ff-4f33-a7f8-bf4f3f5e0a2f" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8084/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:feed="http://www.fm.com/lifevoy/v2/feed">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <feed:GetFeedRequest>\r
+         <feed:username>username1</feed:username>\r
+      </feed:GetFeedRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.fm.com/lifevoy/v2/feed/Feed/GetFeedRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
