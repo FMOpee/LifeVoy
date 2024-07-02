@@ -34,9 +34,20 @@ public class PostEligibilityClient {
                 "   </soapenv:Body>\n" +
                 "</soapenv:Envelope>";
         Document document = getParsedOutput(xmlInput,"http://localhost:8087/ws");
-        //didnt have enouth time to fully parse the document.
 
-        return true;
+        /***************************** RESPONSE ***************************************
+         * <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+         *    <SOAP-ENV:Header/>
+         *    <SOAP-ENV:Body>
+         *       <ns2:PostEligibilityCheckResponse xmlns:ns2="http://fm.com/lifevoy/v2/strikecheck">
+         *          <ns2:eligible>false</ns2:eligible>
+         *       </ns2:PostEligibilityCheckResponse>
+         *    </SOAP-ENV:Body>
+         * </SOAP-ENV:Envelope>
+         * */
+
+
+        return document.getElementsByTagName("ns2:eligible").item(0).getTextContent().equals("true");
     }
 
     public static Document getParsedOutput(String xmlInput, String link) throws IOException, ParserConfigurationException, SAXException {

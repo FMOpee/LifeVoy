@@ -6,6 +6,10 @@ import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 
 import static com.fm.lifevoy.v2.comment.PostEligibilityClient.canPost;
 
@@ -29,7 +33,7 @@ public class CommentEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI,localPart = "CommentRequest")
     @ResponsePayload
-    public CommentResponse comment(@RequestPayload CommentRequest request){
+    public CommentResponse comment(@RequestPayload CommentRequest request) throws IOException, ParserConfigurationException, SAXException {
         CommentResponse response = new CommentResponse();
         if( canPost( request.getText(), request.getUsername() ) ){
             response.setComment(commentRepository
@@ -43,7 +47,7 @@ public class CommentEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "ReplyRequest")
     @ResponsePayload
-    public ReplyResponse reply(@RequestPayload ReplyRequest request){
+    public ReplyResponse reply(@RequestPayload ReplyRequest request) throws IOException, ParserConfigurationException, SAXException {
         ReplyResponse response = new ReplyResponse();
         if(canPost( request.getText(), request.getUsername() )){
             response.setComment(commentRepository
